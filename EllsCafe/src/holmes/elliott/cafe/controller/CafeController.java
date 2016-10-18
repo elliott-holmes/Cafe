@@ -2,6 +2,8 @@ package holmes.elliott.cafe.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import holmes.elliott.cafe.helper.Constants;
 import holmes.elliott.cafe.model.Menu;
@@ -30,7 +32,6 @@ public class CafeController {
 				returnList = new ArrayList<>();
 				returnList.add("Unable to add Item " + command + " to order. please check ");
 			}
-			;
 			break;
 		}
 		return returnList;
@@ -38,36 +39,16 @@ public class CafeController {
 
 	private List<String> getMenuList() {
 		List<String> returnList = new ArrayList<>();
-		StringBuilder strBuilder = new StringBuilder();
-		for (String key : Menu.getInstance().getMenuOptions().keySet()) {
-			MenuItem item = Menu.getInstance().getMenuOptions().get(key);
-			strBuilder.append(key);
-			strBuilder.append("\t");
-			strBuilder.append(item.getProductDescription());
-			strBuilder.append(" (£");
-			strBuilder.append(item.getProductPrice().toPlainString());
-			strBuilder.append(")");
-			returnList.add(strBuilder.toString());
-			strBuilder.delete(0, strBuilder.length());
-		}
+		returnList.addAll(Menu.getInstance().getMenuOptions().entrySet().stream().map(this::convertMenuEntryToString)
+				.collect(Collectors.toList()));
 		return returnList;
 	}
 
 	// This should have been part of Story 2.
 	private List<String> getOrderList() {
 		List<String> returnList = new ArrayList<>();
-		StringBuilder strBuilder = new StringBuilder();
-		for (Integer key : currentOrder.getOrderItems().keySet()) {
-			MenuItem item = currentOrder.getOrderItems().get(key);
-			strBuilder.append(key);
-			strBuilder.append("\t");
-			strBuilder.append(item.getProductDescription());
-			strBuilder.append(" (£");
-			strBuilder.append(item.getProductPrice().toPlainString());
-			strBuilder.append(")");
-			returnList.add(strBuilder.toString());
-			strBuilder.delete(0, strBuilder.length());
-		}
+		returnList.addAll(currentOrder.getOrderItems().entrySet().stream().map(this::convertOrderEntryToString)
+				.collect(Collectors.toList()));
 		returnList.addAll(getOrderTotals());
 		return returnList;
 
@@ -94,7 +75,7 @@ public class CafeController {
 	private boolean addToOrder(String command) {
 		if (Menu.getInstance().getMenuOptions().containsKey(command)) {
 			MenuItem item = Menu.getInstance().getMenuOptions().get(command);
-			currentOrder.addItemToOrder(currentId++, item);
+			currentOrder.addItemToOrder(++currentId, item);
 			return true;
 		}
 		return false;
@@ -108,6 +89,28 @@ public class CafeController {
 
 	public Order getOrder() {
 		return currentOrder;
+	}
+
+	private String convertOrderEntryToString(Entry<Integer, MenuItem> itemEntry) {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append(itemEntry.getKey());
+		strBuilder.append("\t");
+		strBuilder.append(itemEntry.getValue().getProductDescription());
+		strBuilder.append(" (£");
+		strBuilder.append(itemEntry.getValue().getProductPrice().toPlainString());
+		strBuilder.append(")");
+		return strBuilder.toString();
+	}
+
+	private String convertMenuEntryToString(Entry<String, MenuItem> itemEntry) {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append(itemEntry.getKey());
+		strBuilder.append("\t");
+		strBuilder.append(itemEntry.getValue().getProductDescription());
+		strBuilder.append(" (£");
+		strBuilder.append(itemEntry.getValue().getProductPrice().toPlainString());
+		strBuilder.append(")");
+		return strBuilder.toString();
 	}
 
 }

@@ -35,6 +35,10 @@ public class Order {
 		getOrderItems().put(itemKey, item);
 	}
 
+	/**
+	 * Method not implemented
+	 * @param itemKey
+	 */
 	public void removeItemFromOrder(Integer itemKey) {
 		getOrderItems().remove(itemKey);
 	}

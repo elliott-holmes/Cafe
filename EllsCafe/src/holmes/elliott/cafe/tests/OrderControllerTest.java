@@ -60,7 +60,7 @@ public class OrderControllerTest {
 	}
 
 	@Test
-	public void testMaximumServiceCharge(){
+	public void testMaximumServiceCharge() {
 		Order testOrder = new Order();
 		testOrder.addItemToOrder(1, new MenuItem("test1", new BigDecimal("100"), MenuItem.Type.HOT_FOOD));
 		controller = new OrderController(testOrder);

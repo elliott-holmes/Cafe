@@ -1,7 +1,6 @@
 package holmes.elliott.cafe.controller;
 
 import java.math.BigDecimal;
-import java.util.Map.Entry;
 
 import holmes.elliott.cafe.model.MenuItem;
 import holmes.elliott.cafe.model.Order;
@@ -34,9 +33,7 @@ public class OrderController {
 	public BigDecimal getOrderSubTotal() {
 		if (subTotal == null) {
 			subTotal = BigDecimal.ZERO;
-			for (Entry<Integer, MenuItem> item : currentOrder.getOrderItems().entrySet()) {
-				subTotal = subTotal.add(item.getValue().getProductPrice());
-			}
+			currentOrder.getOrderItems().values().stream().forEach(item -> subTotal = subTotal.add(item.getProductPrice()));
 		}
 		return subTotal;
 	}
@@ -44,10 +41,10 @@ public class OrderController {
 	public BigDecimal getOrderServiceCharge() {
 		if (serviceCharge == null) {
 			serviceCharge = getOrderSubTotal().multiply(getServiceChargePercentage());
-			//Should have been part of Story 6
+			// Should have been part of Story 6
 			serviceCharge = serviceCharge.setScale(2, BigDecimal.ROUND_UP);
 		}
-		if (serviceCharge.compareTo(maxServiceCharge)>0){
+		if (serviceCharge.compareTo(maxServiceCharge) > 0) {
 			return maxServiceCharge;
 		}
 		return serviceCharge;
