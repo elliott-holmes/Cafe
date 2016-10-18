@@ -12,12 +12,11 @@ public class MenuItem implements Serializable {
 	private static final long serialVersionUID = 5141457272935709431L;
 	private String productDescription;
 	private BigDecimal productPrice;
+
 	public enum Type {
-		HOT_DRINK,
-		COLD_DRINK,
-		HOT_FOOD,
-		COLD_FOOD		
+		HOT_DRINK, COLD_DRINK, HOT_FOOD, COLD_FOOD
 	}
+
 	private Type productType;
 
 	public MenuItem() {
@@ -28,7 +27,7 @@ public class MenuItem implements Serializable {
 		this.productDescription = productDescription;
 		this.productPrice = productPrice;
 		this.productType = productType;
-	}	
+	}
 
 	public String getProductDescription() {
 		return productDescription;

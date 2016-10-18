@@ -15,6 +15,7 @@ import holmes.elliott.cafe.model.Order;
 public class OrderControllerTest {
 
 	OrderController controller;
+
 	@Before
 	public void setUp() throws Exception {
 		Order testOrder = new Order();
@@ -34,8 +35,8 @@ public class OrderControllerTest {
 		assertEquals(new BigDecimal("60.30"), controller.getOrderSubTotal());
 		Order order = controller.getOrder();
 		order.addItemToOrder(4, new MenuItem("test1", new BigDecimal("44.44"), MenuItem.Type.HOT_FOOD));
-		controller.reset();		
-		assertEquals(new BigDecimal("104.74"), controller.getOrderSubTotal());		
+		controller.reset();
+		assertEquals(new BigDecimal("104.74"), controller.getOrderSubTotal());
 	}
 
 	@Test
@@ -44,8 +45,8 @@ public class OrderControllerTest {
 		Order order = controller.getOrder();
 		MenuItem newItem = new MenuItem("test1", new BigDecimal("44.44"), MenuItem.Type.HOT_FOOD);
 		order.addItemToOrder(4, newItem);
-		controller.reset();		
-		assertEquals(new BigDecimal("20.95"), controller.getOrderServiceCharge());		
+		controller.reset();
+		assertEquals(new BigDecimal("20.95"), controller.getOrderServiceCharge());
 
 	}
 
@@ -55,8 +56,8 @@ public class OrderControllerTest {
 		Order order = controller.getOrder();
 		MenuItem newItem = new MenuItem("test1", new BigDecimal("44.44"), MenuItem.Type.HOT_FOOD);
 		order.addItemToOrder(4, newItem);
-		controller.reset();		
-		assertEquals(new BigDecimal("125.69"), controller.getOrderTotal());		
+		controller.reset();
+		assertEquals(new BigDecimal("125.69"), controller.getOrderTotal());
 	}
 
 }

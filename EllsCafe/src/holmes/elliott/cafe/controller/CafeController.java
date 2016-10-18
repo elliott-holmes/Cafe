@@ -53,7 +53,7 @@ public class CafeController {
 		return returnList;
 	}
 
-	//This should have been part of Story 2.
+	// This should have been part of Story 2.
 	private List<String> getOrderList() {
 		List<String> returnList = new ArrayList<>();
 		StringBuilder strBuilder = new StringBuilder();
@@ -68,11 +68,11 @@ public class CafeController {
 			returnList.add(strBuilder.toString());
 			strBuilder.delete(0, strBuilder.length());
 		}
-		returnList.addAll(getOrderTotals());		
+		returnList.addAll(getOrderTotals());
 		return returnList;
 
 	}
-	
+
 	private List<String> getOrderTotals() {
 		OrderController orderController = new OrderController(currentOrder);
 		StringBuilder strBuilder = new StringBuilder();
