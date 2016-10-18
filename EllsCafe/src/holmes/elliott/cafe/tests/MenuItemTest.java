@@ -14,6 +14,7 @@ public class MenuItemTest {
 
 	private String testDescription = "Test Description";
 	private BigDecimal testPrice = new BigDecimal("25.00");
+	private MenuItem.Type testType = MenuItem.Type.COLD_DRINK;
 
 	@Before
 	public void setUp() throws Exception {
@@ -25,7 +26,7 @@ public class MenuItemTest {
 
 	@Test
 	public void testMenuItemStringBigDecimal() {
-		MenuItem item = new MenuItem(testDescription, testPrice);
+		MenuItem item = new MenuItem(testDescription, testPrice, testType);
 		assertEquals(item.getProductDescription(), testDescription);
 		assertEquals(item.getProductPrice(), new BigDecimal("25.00"));
 	}

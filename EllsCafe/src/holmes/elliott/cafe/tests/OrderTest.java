@@ -20,9 +20,9 @@ public class OrderTest {
 	@Before
 	public void setUp() throws Exception {
 		testOrder = new Order();
-		testOrder.addItemToOrder(1, new MenuItem("test1", new BigDecimal("10")));
-		testOrder.addItemToOrder(2, new MenuItem("test2", new BigDecimal("20.1")));
-		testOrder.addItemToOrder(3, new MenuItem("test1", new BigDecimal("30.20")));
+		testOrder.addItemToOrder(1, new MenuItem("test1", new BigDecimal("10"), MenuItem.Type.COLD_DRINK));
+		testOrder.addItemToOrder(2, new MenuItem("test2", new BigDecimal("20.1"), MenuItem.Type.COLD_FOOD));
+		testOrder.addItemToOrder(3, new MenuItem("test1", new BigDecimal("30.20"), MenuItem.Type.HOT_DRINK));
 		StartUp.populateMenu();
 	}
 

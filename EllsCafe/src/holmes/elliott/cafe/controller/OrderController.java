@@ -17,6 +17,8 @@ public class OrderController {
 	BigDecimal serviceCharge;
 	BigDecimal orderTotal;
 	
+	BigDecimal serviceChargePercentage;
+	
 	public OrderController(Order currentOrder){
 		this.currentOrder=currentOrder;
 	}
@@ -40,7 +42,8 @@ public class OrderController {
 	
 	public BigDecimal getOrderServiceCharge(){
 		if (serviceCharge == null){
-			serviceCharge = getOrderSubTotal().divide(BigDecimal.TEN, 2, BigDecimal.ROUND_UP);
+			serviceCharge = getOrderSubTotal().multiply(getServiceChargePercentage());
+			serviceCharge = serviceCharge.setScale(2, BigDecimal.ROUND_UP);
 		}
 		return serviceCharge;
 	}
@@ -54,5 +57,16 @@ public class OrderController {
 
 	public Order getOrder(){
 		return currentOrder;
+	}
+	
+	private BigDecimal getServiceChargePercentage(){
+		serviceChargePercentage = new BigDecimal ("0.1");
+		if(currentOrder.getOrderItems().values()
+				.stream()
+				.filter(item -> item.getProductType().equals(MenuItem.Type.HOT_FOOD))
+				.findFirst().orElse(null) != null){
+			serviceChargePercentage = new BigDecimal("0.2");
+		}
+		return serviceChargePercentage;
 	}
 }
