@@ -43,6 +43,7 @@ public class OrderController {
 	public BigDecimal getOrderServiceCharge() {
 		if (serviceCharge == null) {
 			serviceCharge = getOrderSubTotal().multiply(getServiceChargePercentage());
+			//Should have been part of Story 6
 			serviceCharge = serviceCharge.setScale(2, BigDecimal.ROUND_UP);
 		}
 		return serviceCharge;
