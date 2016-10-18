@@ -23,7 +23,6 @@ public class OrderControllerTest {
 		testOrder.addItemToOrder(2, new MenuItem("test2", new BigDecimal("20.1"), MenuItem.Type.HOT_DRINK));
 		testOrder.addItemToOrder(3, new MenuItem("test1", new BigDecimal("30.20"), MenuItem.Type.COLD_FOOD));
 		controller = new OrderController(testOrder);
-
 	}
 
 	@After
