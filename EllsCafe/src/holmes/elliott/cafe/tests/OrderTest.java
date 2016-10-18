@@ -55,11 +55,4 @@ public class OrderTest {
 
 	}
 
-	@Test
-	public void testGetOrderTotal() {
-		assertEquals(testOrder.getOrderTotal(), new BigDecimal("60.30"));
-		testOrder.addItemToOrder(4, new MenuItem("test4", new BigDecimal("40.30")));
-		assertEquals(testOrder.getOrderTotal(), new BigDecimal("100.60"));
-	}
-
 }

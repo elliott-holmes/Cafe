@@ -33,7 +33,7 @@ public class ControllerTest {
 		assertNotNull(controller.handleRequest("L"));
 		assertEquals(controller.getOrder().getOrderItems().entrySet().size(), 3);
 		// List order should be order size + total line
-		assertEquals(controller.handleRequest("L").size(), 4);
+		assertEquals(controller.handleRequest("L").size(), 6);
 		controller.handleRequest("N");
 		assertEquals(controller.getOrder().getOrderItems().entrySet().size(), 0);
 

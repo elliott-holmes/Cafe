@@ -68,12 +68,27 @@ public class CafeController {
 			returnList.add(strBuilder.toString());
 			strBuilder.delete(0, strBuilder.length());
 		}
-		strBuilder.append(Constants.ORDER_TOTAL);
-		strBuilder.append("\t£");
-		strBuilder.append(currentOrder.getOrderTotal().toString());
-		returnList.add(strBuilder.toString());
+		returnList.addAll(getOrderTotals());		
 		return returnList;
 
+	}
+	
+	private List<String> getOrderTotals() {
+		OrderController orderController = new OrderController(currentOrder);
+		StringBuilder strBuilder = new StringBuilder();
+		List<String> returnList = new ArrayList<>();
+		strBuilder.append(Constants.ORDER_SUBTOTAL);
+		strBuilder.append(orderController.getOrderSubTotal().toString());
+		returnList.add(strBuilder.toString());
+		strBuilder.delete(0, strBuilder.length());
+		strBuilder.append(Constants.ORDER_SERVICE_CHARGE);
+		strBuilder.append(orderController.getOrderServiceCharge().toString());
+		returnList.add(strBuilder.toString());
+		strBuilder.delete(0, strBuilder.length());
+		strBuilder.append(Constants.ORDER_TOTAL);
+		strBuilder.append(orderController.getOrderTotal().toString());
+		returnList.add(strBuilder.toString());
+		return returnList;
 	}
 
 	private boolean addToOrder(String command) {
