@@ -41,6 +41,7 @@ public class Order {
 		getOrderItems().remove(itemKey);
 	}
 
+	//This should have been part of Story 2.
 	public BigDecimal getOrderTotal() {
 		BigDecimal total = BigDecimal.ZERO;
 		for (Entry<Integer, MenuItem> item : getOrderItems().entrySet()) {

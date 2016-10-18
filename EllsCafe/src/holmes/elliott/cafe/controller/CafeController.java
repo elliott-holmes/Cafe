@@ -53,6 +53,7 @@ public class CafeController {
 		return returnList;
 	}
 
+	//This should have been part of Story 2.
 	private List<String> getOrderList() {
 		List<String> returnList = new ArrayList<>();
 		StringBuilder strBuilder = new StringBuilder();
