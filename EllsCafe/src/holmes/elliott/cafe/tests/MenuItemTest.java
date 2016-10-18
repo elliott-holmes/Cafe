@@ -12,10 +12,9 @@ import holmes.elliott.cafe.model.MenuItem;
 
 public class MenuItemTest {
 
-	private String testDescription= "Test Description";
+	private String testDescription = "Test Description";
 	private BigDecimal testPrice = new BigDecimal("25.00");
-	
-	
+
 	@Before
 	public void setUp() throws Exception {
 	}

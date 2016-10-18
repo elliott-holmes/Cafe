@@ -32,11 +32,11 @@ public class MenuTest {
 	@Test
 	public void testGetMenuOptions() {
 		assertNotNull(Menu.getInstance().getMenuOptions());
-		assertEquals(Menu.getInstance().getMenuOptions().size(),0);
+		assertEquals(Menu.getInstance().getMenuOptions().size(), 0);
 		StartUp.populateMenu();
 		assertNotNull(Menu.getInstance().getMenuOptions());
-		assertEquals(Menu.getInstance().getMenuOptions().size(),4);
-		
+		assertEquals(Menu.getInstance().getMenuOptions().size(), 4);
+
 	}
 
 }

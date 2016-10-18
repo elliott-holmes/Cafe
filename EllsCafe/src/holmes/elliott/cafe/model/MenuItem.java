@@ -2,9 +2,9 @@ package holmes.elliott.cafe.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+
 /**
- * @author holmese
- * Menu Item to show available products for sale.
+ * @author holmese Menu Item to show available products for sale.
  *
  */
 public class MenuItem implements Serializable {
@@ -12,9 +12,9 @@ public class MenuItem implements Serializable {
 	private static final long serialVersionUID = 5141457272935709431L;
 	private String productDescription;
 	private BigDecimal productPrice;
-	
-	public MenuItem(){
-		
+
+	public MenuItem() {
+
 	}
 
 	public MenuItem(String productDescription, BigDecimal productPrice) {
@@ -42,7 +42,5 @@ public class MenuItem implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
 
 }

@@ -21,10 +21,10 @@ public class StartUpTest {
 
 	@Test
 	public void testPopulateMenu() {
-		
+
 		Menu menu = Menu.getInstance();
-		StartUp.populateMenu();		
-		assertEquals(Menu.getInstance().getMenuOptions().size(),4);
+		StartUp.populateMenu();
+		assertEquals(Menu.getInstance().getMenuOptions().size(), 4);
 		assertEquals(menu, Menu.getInstance());
 	}
 

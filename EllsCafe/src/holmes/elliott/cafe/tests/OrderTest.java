@@ -16,7 +16,7 @@ import holmes.elliott.cafe.model.Order;
 public class OrderTest {
 
 	private Order testOrder;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		testOrder = new Order();
@@ -41,18 +41,18 @@ public class OrderTest {
 		testOrder.addItemToOrder(4, new MenuItem());
 		testOrder.addItemToOrder(5, new MenuItem());
 		testOrder.addItemToOrder(6, new MenuItem());
-		assertEquals(testOrder.getOrderItems().size(),currentSize + 3);
+		assertEquals(testOrder.getOrderItems().size(), currentSize + 3);
 	}
 
 	@Test
 	public void testRemoveItemFromOrder() {
 		int currentSize = testOrder.getOrderItems().size();
 		testOrder.removeItemFromOrder(1);
-		assertEquals(testOrder.getOrderItems().size(),currentSize - 1);
-		//this should not be in the order so should not remove anything
+		assertEquals(testOrder.getOrderItems().size(), currentSize - 1);
+		// this should not be in the order so should not remove anything
 		testOrder.removeItemFromOrder(5);
-		assertEquals(testOrder.getOrderItems().size(),currentSize - 1);
-		
+		assertEquals(testOrder.getOrderItems().size(), currentSize - 1);
+
 	}
 
 	@Test

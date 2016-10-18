@@ -40,8 +40,8 @@ public class Order {
 	public void removeItemFromOrder(Integer itemKey) {
 		getOrderItems().remove(itemKey);
 	}
-	
-	public BigDecimal getOrderTotal(){
+
+	public BigDecimal getOrderTotal() {
 		BigDecimal total = BigDecimal.ZERO;
 		for (Entry<Integer, MenuItem> item : getOrderItems().entrySet()) {
 			total = total.add(item.getValue().getProductPrice());
