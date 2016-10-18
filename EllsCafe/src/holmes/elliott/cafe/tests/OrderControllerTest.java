@@ -34,19 +34,19 @@ public class OrderControllerTest {
 	public void testGetOrderSubTotal() {
 		assertEquals(new BigDecimal("60.30"), controller.getOrderSubTotal());
 		Order order = controller.getOrder();
-		order.addItemToOrder(4, new MenuItem("test1", new BigDecimal("44.44"), MenuItem.Type.HOT_FOOD));
+		order.addItemToOrder(4, new MenuItem("test1", new BigDecimal("15.44"), MenuItem.Type.HOT_FOOD));
 		controller.reset();
-		assertEquals(new BigDecimal("104.74"), controller.getOrderSubTotal());
+		assertEquals(new BigDecimal("75.74"), controller.getOrderSubTotal());
 	}
 
 	@Test
 	public void testGetOrderServiceCharge() {
 		assertEquals(new BigDecimal("6.03"), controller.getOrderServiceCharge());
 		Order order = controller.getOrder();
-		MenuItem newItem = new MenuItem("test1", new BigDecimal("44.44"), MenuItem.Type.HOT_FOOD);
+		MenuItem newItem = new MenuItem("test1", new BigDecimal("15.44"), MenuItem.Type.HOT_FOOD);
 		order.addItemToOrder(4, newItem);
 		controller.reset();
-		assertEquals(new BigDecimal("20.95"), controller.getOrderServiceCharge());
+		assertEquals(new BigDecimal("15.15"), controller.getOrderServiceCharge());
 
 	}
 
@@ -54,10 +54,21 @@ public class OrderControllerTest {
 	public void testGetOrderTotal() {
 		assertEquals(new BigDecimal("66.33"), controller.getOrderTotal());
 		Order order = controller.getOrder();
-		MenuItem newItem = new MenuItem("test1", new BigDecimal("44.44"), MenuItem.Type.HOT_FOOD);
+		MenuItem newItem = new MenuItem("test1", new BigDecimal("15.44"), MenuItem.Type.HOT_FOOD);
 		order.addItemToOrder(4, newItem);
 		controller.reset();
-		assertEquals(new BigDecimal("125.69"), controller.getOrderTotal());
+		assertEquals(new BigDecimal("90.89"), controller.getOrderTotal());
 	}
 
+	@Test
+	public void testMaximumServiceCharge(){
+		Order testOrder = new Order();
+		testOrder.addItemToOrder(1, new MenuItem("test1", new BigDecimal("100"), MenuItem.Type.HOT_FOOD));
+		controller = new OrderController(testOrder);
+		assertEquals(new BigDecimal("20.00"), controller.getOrderServiceCharge());
+		MenuItem newItem = new MenuItem("test99", new BigDecimal("44.44"), MenuItem.Type.HOT_FOOD);
+		controller.getOrder().addItemToOrder(4, newItem);
+		controller.reset();
+		assertEquals(new BigDecimal("20.00"), controller.getOrderServiceCharge());
+	}
 }

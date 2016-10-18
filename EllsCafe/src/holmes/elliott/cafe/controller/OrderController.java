@@ -16,6 +16,7 @@ public class OrderController {
 	BigDecimal subTotal;
 	BigDecimal serviceCharge;
 	BigDecimal orderTotal;
+	BigDecimal maxServiceCharge = new BigDecimal("20.00");
 
 	BigDecimal serviceChargePercentage;
 
@@ -45,6 +46,9 @@ public class OrderController {
 			serviceCharge = getOrderSubTotal().multiply(getServiceChargePercentage());
 			//Should have been part of Story 6
 			serviceCharge = serviceCharge.setScale(2, BigDecimal.ROUND_UP);
+		}
+		if (serviceCharge.compareTo(maxServiceCharge)>0){
+			return maxServiceCharge;
 		}
 		return serviceCharge;
 	}
